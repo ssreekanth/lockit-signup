@@ -158,7 +158,7 @@ Signup.prototype.postSignup = function(req, res, next) {
           if (err) return next(err);
 
           // send only JSON when REST is active
-          if (config.rest) return res.send(204);
+          if (config.rest) return res.sendStatus(204);
 
           res.render(successView, {
             title: 'Sign up - Email sent',
@@ -184,7 +184,7 @@ Signup.prototype.postSignup = function(req, res, next) {
           that.emit('signup::post', user);
 
           // send only JSON when REST is active
-          if (config.rest) return res.send(204);
+          if (config.rest) return res.sendStatus(204);
 
           res.render(successView, {
             title: 'Sign up - Email sent',
@@ -272,7 +272,7 @@ Signup.prototype.postSignupResend = function(req, res, next) {
     // or email address is already verified -> user has to use password reset function
     if (!user || user.emailVerified) {
       // send only JSON when REST is active
-      if (config.rest) return res.send(204);
+      if (config.rest) return res.sendStatus(204);
 
       res.render(successView, {
         title: 'Sign up - Email sent',
@@ -303,7 +303,7 @@ Signup.prototype.postSignupResend = function(req, res, next) {
         if (err) return next(err);
 
         // send only JSON when REST is active
-        if (config.rest) return res.send(204);
+        if (config.rest) return res.sendStatus(204);
 
         res.render(successView, {
           title: 'Sign up - Email sent',
@@ -395,7 +395,7 @@ Signup.prototype.getSignupToken = function(req, res, next) {
       if (config.signup.handleResponse) {
 
         // send only JSON when REST is active
-        if (config.rest) return res.send(204);
+        if (config.rest) return res.sendStatus(204);
 
         // custom or built-in view
         var view = config.signup.views.verified || join('mail-verification-success');
