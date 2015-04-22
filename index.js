@@ -109,7 +109,7 @@ Signup.prototype.postSignup = function(req, res, next) {
 
   if (error) {
     // send only JSON when REST is active
-    if (config.rest) return res.json(403, {error: error});
+    if (config.rest) return res.status(403).json({error: error});
 
     // render template with error message
     res.status(403);
@@ -130,7 +130,7 @@ Signup.prototype.postSignup = function(req, res, next) {
     if (user) {
       error = 'Username already taken';
       // send only JSON when REST is active
-      if (config.rest) return res.json(403, {error: error});
+      if (config.rest) return res.status(403).json({error: error});
 
       // render template with error message
       res.status(403);
@@ -246,7 +246,7 @@ Signup.prototype.postSignupResend = function(req, res, next) {
 
   if (error) {
     // send only JSON when REST is active
-    if (config.rest) return res.json(403, {error: error});
+    if (config.rest) return res.status(403).json({error: error});
 
     // custom or built-in view
     var errorView = config.signup.views.resend || join('resend-verification');
@@ -359,7 +359,7 @@ Signup.prototype.getSignupToken = function(req, res, next) {
         if (err) return next(err);
 
         // send only JSON when REST is active
-        if (config.rest) return res.json(403, {error: 'token expired'});
+        if (config.rest) return res.status(403).json({error: 'token expired'});
 
         // custom or built-in view
         var expiredView = config.signup.views.linkExpired || join('link-expired');
